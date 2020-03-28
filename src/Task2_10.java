@@ -177,42 +177,42 @@ public class Task2_10 {
 
         System.out.println("______________________________________________________");
 
-        createGraphic();
+        createChart();
     }
 
-    private static void createGraphic() {
-        XYLineChart_AWT chartA = new XYLineChart_AWT("А",
+    private static void createChart() {
+        XYLineChart_AWT chartA = new XYLineChart_AWT("2,10 А",
                 "не содержит одинаковых цифр", arrayA, "А", "Номер эксперимента", "Вероятность");
-        chartA.createDataset(arrayA, "A");
+        chartA.createDataSet(arrayA, "2.10 A");
         chartA.pack();
         RefineryUtilities.centerFrameOnScreen( chartA );
         chartA.setVisible(true);
 
-        XYLineChart_AWT chartB = new XYLineChart_AWT("Б",
+        XYLineChart_AWT chartB = new XYLineChart_AWT("2.10 Б",
                 "имеет две одинаковые цифры", arrayB, "Б", "Номер эксперимента", "Вероятность");
         chartB.pack();
-        chartB.createDataset(arrayB, "Б");
+        chartB.createDataSet(arrayB, "2.10 Б");
         RefineryUtilities.centerFrameOnScreen( chartB );
         chartB.setVisible(true);
 
-        XYLineChart_AWT chartC = new XYLineChart_AWT("В",
+        XYLineChart_AWT chartC = new XYLineChart_AWT("2.10 В",
                 "имеет три одинаковые цифры", arrayC, "В", "Номер эксперимента", "Вероятность");
         chartC.pack();
-        chartC.createDataset(arrayC, "В");
+        chartC.createDataSet(arrayC, "2.10 В");
         RefineryUtilities.centerFrameOnScreen( chartC );
         chartC.setVisible(true);
 
-        XYLineChart_AWT chartD = new XYLineChart_AWT("Г",
+        XYLineChart_AWT chartD = new XYLineChart_AWT("2.10 Г",
                 "содержит две пары одинаковых цифр", arrayD, "Г", "Номер эксперимента", "Вероятность");
         chartD.pack();
-        chartD.createDataset(arrayD, "Г");
+        chartD.createDataSet(arrayD, "2.10 Г");
         RefineryUtilities.centerFrameOnScreen( chartD );
         chartD.setVisible(true);
 
-        XYLineChart_AWT chartE = new XYLineChart_AWT("Д",
+        XYLineChart_AWT chartE = new XYLineChart_AWT("2.10 Д",
                 "состоит из одинаковых цифр", arrayE, "Д", "Номер эксперимента", "Вероятность");
         chartE.pack();
-        chartE.createDataset(arrayE, "Д");
+        chartE.createDataSet(arrayE, "2.10 Д");
         RefineryUtilities.centerFrameOnScreen( chartE );
         chartE.setVisible(true);
     }

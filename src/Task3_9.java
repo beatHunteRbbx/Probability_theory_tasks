@@ -51,17 +51,17 @@ public class Task3_9 {
 
         array = probability.clone();
 
-        createGraphic();
+        createChart();
     }
 
     private static double getRandomDoubleBetweenRange(double min, double max){
         return (Math.random()*((max-min)))+min;
     }
 
-    private static void createGraphic() {
+    private static void createChart() {
         XYLineChart_AWT chartA = new XYLineChart_AWT("3.9",
                 "", array, "вероятность подходящих ситуаций", "Номер эксперимента", "Вероятность");
-        chartA.createDataset(array, "вероятность подходящих ситуаций");
+        chartA.createDataSet(array, "вероятность подходящих ситуаций");
         chartA.pack();
         RefineryUtilities.centerFrameOnScreen(chartA);
         chartA.setVisible(true);
