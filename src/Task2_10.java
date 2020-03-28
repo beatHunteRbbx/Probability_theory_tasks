@@ -1,3 +1,5 @@
+import org.jfree.ui.RefineryUtilities;
+
 public class Task2_10 {
 /**
  * Известно, что все номера автомашины четырёхзначные, начиная с 0001, не повторяющиеся и равновозможные.
@@ -8,6 +10,14 @@ public class Task2_10 {
  * г) содержит две пары одинаковых цифр
  * д) состоит из одинаковых цифр
  * */
+    private static int size = 10;
+    private static double[] arrayA = new double[size];
+    private static double[] arrayB = new double[size];
+    private static double[] arrayC = new double[size];
+    private static double[] arrayD = new double[size];
+    private static double[] arrayE = new double[size];
+
+
     private static int getRandomIntegerBetweenRange(int min, int max){
         return (int) (Math.random()*((max-min)+1))+min;
     }
@@ -23,7 +33,6 @@ public class Task2_10 {
     }
 
     public static void solve() {
-        int size = 10;
         int numberOfExperiments = 10;
         int amountOfValidNumbers;
         int[][] numbers;
@@ -51,7 +60,7 @@ public class Task2_10 {
             System.out.println("       probability = " + (double) amountOfValidNumbers/size);
         }
         System.out.println();
-
+        arrayA = probability.clone();
         for (double prob : probability) sum += prob;
         System.out.println("Average probability of all different digits in number = " + sum / numberOfExperiments);
         System.out.println();
@@ -80,6 +89,7 @@ public class Task2_10 {
             System.out.println("       probability = " + (double) amountOfValidNumbers/size);
         }
         System.out.println();
+        arrayB = probability.clone();
         for (double prob : probability) sum += prob;
         System.out.println("Average probability of 2 same digits in number = " + sum / numberOfExperiments);
         System.out.println();
@@ -106,6 +116,7 @@ public class Task2_10 {
             System.out.println("       probability = " + (double) amountOfValidNumbers/size);
         }
         System.out.println();
+        arrayC = probability.clone();
         for (double prob : probability) sum += prob;
         System.out.println("Average probability of all different digits in number = " + sum / numberOfExperiments);
         System.out.println();
@@ -131,6 +142,7 @@ public class Task2_10 {
             System.out.println("       probability = " + (double) amountOfValidNumbers/size);
         }
         System.out.println();
+        arrayD = probability.clone();
         for (double prob : probability) sum += prob;
         System.out.println("Average probability of all different digits in number = " + sum / numberOfExperiments);
         System.out.println();
@@ -157,11 +169,51 @@ public class Task2_10 {
             System.out.println("       probability = " + (double) amountOfValidNumbers/size);
         }
         System.out.println();
+        arrayE = probability.clone();
         for (double prob : probability) sum += prob;
         System.out.println("Average probability of all different digits in number = " + sum / numberOfExperiments);
         System.out.println();
 
 
         System.out.println("______________________________________________________");
+
+        createGraphic();
+    }
+
+    private static void createGraphic() {
+        XYLineChart_AWT chartA = new XYLineChart_AWT("А",
+                "не содержит одинаковых цифр", arrayA, "А");
+        chartA.createDataset(arrayA, "A");
+        chartA.pack();
+        RefineryUtilities.centerFrameOnScreen( chartA );
+        chartA.setVisible(true);
+
+        XYLineChart_AWT chartB = new XYLineChart_AWT("Б",
+                "имеет две одинаковые цифры", arrayB, "Б");
+        chartB.pack();
+        chartB.createDataset(arrayB, "Б");
+        RefineryUtilities.centerFrameOnScreen( chartB );
+        chartB.setVisible(true);
+
+        XYLineChart_AWT chartC = new XYLineChart_AWT("В",
+                "имеет три одинаковые цифры", arrayC, "В");
+        chartC.pack();
+        chartC.createDataset(arrayC, "В");
+        RefineryUtilities.centerFrameOnScreen( chartC );
+        chartC.setVisible(true);
+
+        XYLineChart_AWT chartD = new XYLineChart_AWT("Г",
+                "содержит две пары одинаковых цифр", arrayD, "Г");
+        chartD.pack();
+        chartD.createDataset(arrayD, "Г");
+        RefineryUtilities.centerFrameOnScreen( chartD );
+        chartD.setVisible(true);
+
+        XYLineChart_AWT chartE = new XYLineChart_AWT("Д",
+                "состоит из одинаковых цифр", arrayE, "Д");
+        chartE.pack();
+        chartE.createDataset(arrayE, "Д");
+        RefineryUtilities.centerFrameOnScreen( chartE );
+        chartE.setVisible(true);
     }
 }
