@@ -172,16 +172,16 @@ public class Task2_10 {
         arrayE = probability.clone();
         for (double prob : probability) sum += prob;
         System.out.println("Average probability of all different digits in number = " + sum / numberOfExperiments);
-        System.out.println();
-
 
         System.out.println("______________________________________________________");
+        System.out.println();
+        System.out.println();
 
         createChart();
     }
 
     private static void createChart() {
-        XYLineChart_AWT chartA = new XYLineChart_AWT("2,10 А",
+        XYLineChart_AWT chartA = new XYLineChart_AWT("2.10 А",
                 "не содержит одинаковых цифр", arrayA, "А", "Номер эксперимента", "Вероятность");
         chartA.createDataSet(arrayA, "2.10 A");
         chartA.pack();

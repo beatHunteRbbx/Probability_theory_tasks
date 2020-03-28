@@ -18,7 +18,8 @@ public class Task3_9 {
         int numberOfValidSituations = 0;
         double[] probability = new double[numberOfExperiments];
 
-
+        System.out.println("________________________3.9__________________________");
+        System.out.println();
         for (int experiment = 0; experiment < numberOfExperiments; experiment++) {
             System.out.println("Experiment " + experiment + ": ");
             numberOfValidSituations = 0;
@@ -48,7 +49,9 @@ public class Task3_9 {
             System.out.println("Average probability = " + probability[experiment]);
             System.out.println();
         }
-
+        System.out.println("______________________________________________________");
+        System.out.println();
+        System.out.println();
         array = probability.clone();
 
         createChart();
