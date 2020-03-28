@@ -15,12 +15,16 @@ import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 
 public class XYLineChart_AWT extends ApplicationFrame {
 
-    public XYLineChart_AWT(String applicationTitle, String chartTitle, double[] arrData, String string) {
+    public XYLineChart_AWT(String applicationTitle, String chartTitle,
+                           double[] arrData,
+                           String string,
+                           String OXName,
+                           String OYName) {
         super(applicationTitle);
         JFreeChart xylineChart = ChartFactory.createXYLineChart(
                 chartTitle,
-                "Category",
-                "Score",
+                OXName,
+                OYName,
                 createDataset(arrData, string),
                 PlotOrientation.VERTICAL,
                 true, true, false);
@@ -28,7 +32,6 @@ public class XYLineChart_AWT extends ApplicationFrame {
         ChartPanel chartPanel = new ChartPanel( xylineChart );
         chartPanel.setPreferredSize( new java.awt.Dimension( 560 , 367 ) );
         final XYPlot plot = xylineChart.getXYPlot( );
-
         XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer( );
         renderer.setSeriesPaint( 0, Color.RED );
         renderer.setSeriesPaint( 1, Color.GREEN );

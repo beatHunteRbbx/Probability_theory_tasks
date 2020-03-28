@@ -182,35 +182,35 @@ public class Task2_10 {
 
     private static void createGraphic() {
         XYLineChart_AWT chartA = new XYLineChart_AWT("А",
-                "не содержит одинаковых цифр", arrayA, "А");
+                "не содержит одинаковых цифр", arrayA, "А", "Номер эксперимента", "Вероятность");
         chartA.createDataset(arrayA, "A");
         chartA.pack();
         RefineryUtilities.centerFrameOnScreen( chartA );
         chartA.setVisible(true);
 
         XYLineChart_AWT chartB = new XYLineChart_AWT("Б",
-                "имеет две одинаковые цифры", arrayB, "Б");
+                "имеет две одинаковые цифры", arrayB, "Б", "Номер эксперимента", "Вероятность");
         chartB.pack();
         chartB.createDataset(arrayB, "Б");
         RefineryUtilities.centerFrameOnScreen( chartB );
         chartB.setVisible(true);
 
         XYLineChart_AWT chartC = new XYLineChart_AWT("В",
-                "имеет три одинаковые цифры", arrayC, "В");
+                "имеет три одинаковые цифры", arrayC, "В", "Номер эксперимента", "Вероятность");
         chartC.pack();
         chartC.createDataset(arrayC, "В");
         RefineryUtilities.centerFrameOnScreen( chartC );
         chartC.setVisible(true);
 
         XYLineChart_AWT chartD = new XYLineChart_AWT("Г",
-                "содержит две пары одинаковых цифр", arrayD, "Г");
+                "содержит две пары одинаковых цифр", arrayD, "Г", "Номер эксперимента", "Вероятность");
         chartD.pack();
         chartD.createDataset(arrayD, "Г");
         RefineryUtilities.centerFrameOnScreen( chartD );
         chartD.setVisible(true);
 
         XYLineChart_AWT chartE = new XYLineChart_AWT("Д",
-                "состоит из одинаковых цифр", arrayE, "Д");
+                "состоит из одинаковых цифр", arrayE, "Д", "Номер эксперимента", "Вероятность");
         chartE.pack();
         chartE.createDataset(arrayE, "Д");
         RefineryUtilities.centerFrameOnScreen( chartE );
