@@ -1,5 +1,7 @@
 import java.awt.Color;
 import java.awt.BasicStroke;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -15,6 +17,7 @@ import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 
 public class XYLineChart_AWT extends ApplicationFrame {
 
+    //конструктор, если нужно создать график с одной ленией
     public XYLineChart_AWT(String applicationTitle, String chartTitle,
                            double[] arrData,
                            String string,
@@ -34,13 +37,49 @@ public class XYLineChart_AWT extends ApplicationFrame {
         final XYPlot plot = XYLineChart.getXYPlot();
         XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer( );
         renderer.setSeriesPaint(0, Color.RED);
-        renderer.setSeriesPaint(1, Color.GREEN);
-        renderer.setSeriesPaint(2, Color.YELLOW);
         renderer.setSeriesStroke(0, new BasicStroke(4.0f));
-        renderer.setSeriesStroke(1, new BasicStroke(3.0f));
-        renderer.setSeriesStroke(2, new BasicStroke(2.0f));
         plot.setRenderer(renderer);
         setContentPane(chartPanel);
+    }
+
+    //конструктор, если нужно создать один единый график с множеством линий
+    public XYLineChart_AWT(String applicationTitle, String chartTitle,
+                           ArrayList<double[]> listOfArrays,
+                           String[] arrNames,
+                           String OXName,
+                           String OYName) {
+        super(applicationTitle);
+        JFreeChart XYLineChart = ChartFactory.createXYLineChart(
+                chartTitle,
+                OXName,
+                OYName,
+                createAllInOneDataSet(listOfArrays, arrNames),
+                PlotOrientation.VERTICAL,
+                true, true, false);
+
+        ChartPanel chartPanel = new ChartPanel(XYLineChart);
+        chartPanel.setPreferredSize(new java.awt.Dimension(560 , 367));
+        final XYPlot plot = XYLineChart.getXYPlot();
+        XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer( );
+        for (int i = 0; i < listOfArrays.size(); i++) {
+            renderer.setSeriesPaint(3, new Color((int)(Math.random() * 0x1000000)));
+            renderer.setSeriesStroke(i, new BasicStroke(2.0f));
+        }
+        plot.setRenderer(renderer);
+        setContentPane(chartPanel);
+    }
+
+    public XYDataset createAllInOneDataSet(ArrayList<double[]> listOfArrays, String[] arrNames) {
+        final XYSeriesCollection dataSet = new XYSeriesCollection();
+        for (int i = 0; i < listOfArrays.size(); i++) {
+            double[] array = listOfArrays.get(i);
+            final XYSeries data = new XYSeries(arrNames[i]);
+            for (int j = 0; j < array.length; j++) {
+                data.add(j + 1, array[j]);
+            }
+            dataSet.addSeries(data);
+        }
+        return dataSet;
     }
 
     public XYDataset createDataSet(double[] array, String string) {
