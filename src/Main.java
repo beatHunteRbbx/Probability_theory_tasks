@@ -6,6 +6,6 @@ public abstract class Main {
 
     public static void main(String[] args) {
         Task2_10.solve();
-
+        Task3_9.solve();
     }
 }
