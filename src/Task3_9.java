@@ -1,60 +1,71 @@
 import org.jfree.ui.RefineryUtilities;
 
+import java.util.ArrayList;
+
 public class Task3_9 {
+    /**
+     * На отрезке длинной l независимо одна от другой поставлены две точки,
+     * положение каждой из которых равновозможно на всем отрезке.
+     * Определить вероятность того, что расстояние между этими точками меньше βl, где 0 <β<1.
+     * */
 
     private static int numberOfExperiments = 10;
-    private static int numberOfSituations = 20;
-    private static double[] array = new double[numberOfExperiments];
+    private static int numberOfSituations = 10000;
+    private static ArrayList<double[]> listOfArrays = new ArrayList<>();
+    private static double[] arrBetas = new double[] {0.2, 0.5, 0.6, 0.9};
+    private static String[] arrNames = new String[arrBetas.length];
 
     public static void solve() {
+        System.out.println("________________________3.9__________________________");
 
+        for (int i = 0; i < arrBetas.length; i++) arrNames[i] = "β=" + arrBetas[i];
+
+        calculate(arrBetas[0]);
+        calculate(arrBetas[1]);
+        calculate(arrBetas[2]);
+        calculate(arrBetas[3]);
+
+        createChart();
+
+        System.out.println("______________________________________________________");
+
+    }
+
+    private static void calculate(double entryBeta) {
+        System.out.println("β = " + entryBeta);
         double l;
         double p1;
         double p2;
-        double beta;
+        double beta = entryBeta;
         double lengthBetweenPoints;
         double requireLength;
+        double[] array = new double[numberOfExperiments];
         boolean isValid;
         int numberOfValidSituations = 0;
-        double[] probability = new double[numberOfExperiments];
+        double[] arrProbability = new double[numberOfExperiments];
 
-        System.out.println("________________________3.9__________________________");
-        System.out.println();
         for (int experiment = 0; experiment < numberOfExperiments; experiment++) {
-            System.out.println("Experiment " + experiment + ": ");
+            System.out.print("  Experiment " + experiment + ": ");
             numberOfValidSituations = 0;
             for (int situation = 0; situation < numberOfSituations; situation++) {
                 isValid = false;
                 l = 10;
                 p1 = getRandomDoubleBetweenRange(0.0, 10.0);
                 p2 = getRandomDoubleBetweenRange(0.0, 10.0);
-                beta = getRandomDoubleBetweenRange(0.0, 1.0);
                 lengthBetweenPoints = Math.abs(p2 - p1);
                 requireLength = beta * l;
                 if (lengthBetweenPoints < requireLength) {
                     numberOfValidSituations++;
                     isValid = true;
                 }
-
-                System.out.println(   "  Situation " + situation +
-                                    ": point_1=" + p1 +
-                                    "; point_2=" + p2 +
-                                    "; l=" + l +
-                                    "; β=" + beta +
-                                    "          " +
-                                    "valid=" + isValid);
             }
 
-            probability[experiment] = (double) numberOfValidSituations / numberOfSituations;
-            System.out.println("Average probability = " + probability[experiment]);
-            System.out.println();
+            arrProbability[experiment] = (double) numberOfValidSituations / numberOfSituations;
+            System.out.println("Average probability = " + arrProbability[experiment]);
         }
-        System.out.println("______________________________________________________");
-        System.out.println();
-        System.out.println();
-        array = probability.clone();
+        listOfArrays.add(arrProbability);
 
-        createChart();
+        System.out.println();
     }
 
     private static double getRandomDoubleBetweenRange(double min, double max){
@@ -62,11 +73,11 @@ public class Task3_9 {
     }
 
     private static void createChart() {
-        XYLineChart_AWT chartA = new XYLineChart_AWT("3.9",
-                "", array, "вероятность подходящих ситуаций", "Номер эксперимента", "Вероятность");
-        chartA.createDataSet(array, "вероятность подходящих ситуаций");
-        chartA.pack();
-        RefineryUtilities.centerFrameOnScreen(chartA);
-        chartA.setVisible(true);
+        XYLineChart_AWT chart = new XYLineChart_AWT("3.9",
+                "", listOfArrays, arrNames, "Номер эксперимента", "Вероятность");
+        chart.createAllInOneDataSet(listOfArrays, arrNames);
+        chart.pack();
+        RefineryUtilities.centerFrameOnScreen(chart);
+        chart.setVisible(true);
     }
 }
