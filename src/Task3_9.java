@@ -13,12 +13,12 @@ public class Task3_9 {
     private static int numberOfSituations = 10000;
     private static ArrayList<double[]> listOfArrays = new ArrayList<>();
     private static double[] arrBetas = new double[] {0.2, 0.5, 0.6, 0.9};
-    private static String[] arrNames = new String[arrBetas.length];
+    private static ArrayList<String> listOfNames= new ArrayList<>();
 
     public static void solve() {
         System.out.println("________________________3.9__________________________");
 
-        for (int i = 0; i < arrBetas.length; i++) arrNames[i] = "β=" + arrBetas[i];
+        for (int i = 0; i < arrBetas.length; i++) listOfNames.add("β=" + arrBetas[i]);
 
         calculate(arrBetas[0]);
         calculate(arrBetas[1]);
@@ -74,8 +74,8 @@ public class Task3_9 {
 
     private static void createChart() {
         XYLineChart_AWT chart = new XYLineChart_AWT("3.9",
-                "", listOfArrays, arrNames, "Номер эксперимента", "Вероятность");
-        chart.createAllInOneDataSet(listOfArrays, arrNames);
+                "", listOfArrays, listOfNames, "Номер эксперимента", "Вероятность");
+        chart.createAllInOneDataSet(listOfArrays, listOfNames);
         chart.pack();
         RefineryUtilities.centerFrameOnScreen(chart);
         chart.setVisible(true);

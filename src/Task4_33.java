@@ -17,12 +17,12 @@ public class Task4_33 {
     private static ArrayList<double[]> listOfArrays = new ArrayList<>();
     private static int[] arrNs = new int[] {50, 20, 33, 84};
     private static int[] arrMs = new int[] {45, 5, 1, 67};
-    private static String[] arrNames = new String[arrNs.length];
+    private static ArrayList<String> listOfNames = new ArrayList<>();
 
     public static void solve() {
         System.out.println("________________________4.33__________________________");
         for (int i = 0; i < arrNs.length; i++) {
-            arrNames[i] = "n=" + arrNs[i] + "; m=" + arrMs[i] + "   ";
+            listOfNames.add("n=" + arrNs[i] + "; m=" + arrMs[i] + "   ");
             calculate(arrNs[i], arrMs[i]);
         }
 
@@ -64,8 +64,8 @@ public class Task4_33 {
 
     private static void createChart() {
         XYLineChart_AWT chartA = new XYLineChart_AWT("4.33",
-                "", listOfArrays, arrNames, "Номер эксперимента", "Вероятность");
-        chartA.createAllInOneDataSet(listOfArrays, arrNames);
+                "", listOfArrays, listOfNames, "Номер эксперимента", "Вероятность");
+        chartA.createAllInOneDataSet(listOfArrays, listOfNames);
         chartA.pack();
         RefineryUtilities.centerFrameOnScreen(chartA);
         chartA.setVisible(true);

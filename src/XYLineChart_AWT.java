@@ -45,7 +45,7 @@ public class XYLineChart_AWT extends ApplicationFrame {
     //конструктор, если нужно создать один единый график с множеством линий
     public XYLineChart_AWT(String applicationTitle, String chartTitle,
                            ArrayList<double[]> listOfArrays,
-                           String[] arrNames,
+                           ArrayList<String> listOfNames,
                            String OXName,
                            String OYName) {
         super(applicationTitle);
@@ -53,7 +53,7 @@ public class XYLineChart_AWT extends ApplicationFrame {
                 chartTitle,
                 OXName,
                 OYName,
-                createAllInOneDataSet(listOfArrays, arrNames),
+                createAllInOneDataSet(listOfArrays, listOfNames),
                 PlotOrientation.VERTICAL,
                 true, true, false);
 
@@ -69,11 +69,11 @@ public class XYLineChart_AWT extends ApplicationFrame {
         setContentPane(chartPanel);
     }
 
-    public XYDataset createAllInOneDataSet(ArrayList<double[]> listOfArrays, String[] arrNames) {
+    public XYDataset createAllInOneDataSet(ArrayList<double[]> listOfArrays, ArrayList<String> listOfNames) {
         final XYSeriesCollection dataSet = new XYSeriesCollection();
         for (int i = 0; i < listOfArrays.size(); i++) {
             double[] array = listOfArrays.get(i);
-            final XYSeries data = new XYSeries(arrNames[i]);
+            final XYSeries data = new XYSeries(listOfNames.get(i));
             for (int j = 0; j < array.length; j++) {
                 data.add(j + 1, array[j]);
             }
