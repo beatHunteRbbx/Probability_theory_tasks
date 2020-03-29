@@ -5,5 +5,6 @@ public abstract class Main {
         Task3_9.solve();
         Task4_33.solve();
         Task5_20.solve();
+        Task6_4.solve();
     }
 }
