@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Task5_20 {
+    /**
+     * Из урны, содержащей n шаров с номерами от 1 до n, последовательно извлекают два шара,
+     * причем первый шар возвращается, если его номер не равен единице.
+     * Определить вероятность того, что шар с номером 2 будет извлечен при втором извлечении.
+     * */
 
     private static int numberOfExperiments = 20;
     private static int numberOfSituations = 1000;
