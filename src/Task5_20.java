@@ -5,7 +5,6 @@ import java.util.Collections;
 
 public class Task5_20 {
 
-    private static int numberOfSeries = 3;
     private static int numberOfExperiments = 20;
     private static int numberOfSituations = 1000;
     private static ArrayList<String> listOfNames = new ArrayList<>();
@@ -45,9 +44,7 @@ public class Task5_20 {
                 int rndNumb1 = getRandomIntegerBetweenRange(0, n - 1);
                 int firstBall = trash.get(rndNumb1);
                 trash.remove(rndNumb1);
-                if (firstBall != 1) {
-                    trash.add(firstBall);
-                }
+                if (firstBall != 1) trash.add(firstBall);
 
                 //извлечение 2ого шара
                 int rndNumb2 = getRandomIntegerBetweenRange(0, n - 1);
@@ -72,7 +69,7 @@ public class Task5_20 {
     }
 
     private static void createChart() {
-        XYLineChart_AWT chart = new XYLineChart_AWT("4.33",
+        XYLineChart_AWT chart = new XYLineChart_AWT("5.20",
                 "", listOfArrays, listOfNames, "Номер эксперимента", "Вероятность");
         chart.createAllInOneDataSet(listOfArrays, listOfNames);
         chart.pack();
