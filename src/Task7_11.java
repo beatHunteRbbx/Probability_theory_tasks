@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Task7_11 {
+    /**
+     * В урне имеется n шаров; до опытов любое предположение о числе белых шаров среди них равновероятно.
+     * Извлекаются последовательно k шаров, причем каждый раз после извлечения шар возвращается в урну.
+     * Какова вероятность того, что в урне содержатся только белые шары, если шары другого цвета не извлекались.
+     * */
 
     private static int numberOfExperiments = 20;
     private static int numberOfSituations = 100000;
@@ -12,7 +17,6 @@ public class Task7_11 {
 
     public static void solve() {
 
-//            calculate(3,2);
         for (int i = 0; i < 2; i++) {
             int n = getRandomIntegerBetweenRange(5, 20);
             int k = getRandomIntegerBetweenRange(5, n);
