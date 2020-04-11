@@ -8,5 +8,6 @@ public abstract class Main {
         Task6_4.solve();
         Task7_11.solve();
         Task8_8.solve();
+        Task9_13.solve();
     }
 }
