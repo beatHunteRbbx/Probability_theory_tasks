@@ -33,6 +33,10 @@ public class Task8_8 {
             array[experiment] = (double) numberOfValidSituations / numberOfSituations;
             System.out.println(experiment + ": " + numberOfValidSituations);
         }
+        listOfArrays.add(array);
+        double sum = 0;
+        for (double prob : array) sum += prob;
+        listOfNames.add("средн.вер = "+ sum / array.length);
         createChart();
     }
 
@@ -77,8 +81,8 @@ public class Task8_8 {
 
     private static void createChart() {
         XYLineChart_AWT chart = new XYLineChart_AWT("8.8",
-                "", array, "", "Номер эксперимента", "Вероятность");
-        chart.createDataSet(array, "");
+                "", listOfArrays, listOfNames, "Номер эксперимента", "Вероятность");
+        chart.createAllInOneDataSet(listOfArrays, listOfNames);
         chart.pack();
         RefineryUtilities.centerFrameOnScreen(chart);
         chart.setVisible(true);

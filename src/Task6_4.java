@@ -12,7 +12,7 @@ public class Task6_4 {
      * */
 
     private static int numberOfExperiments = 10;
-    private static int numberOfSituations = 500;
+    private static int numberOfSituations = 10000;
     private static ArrayList<String> listOfNames = new ArrayList<>();
     private static ArrayList<double[]> listOfArrays = new ArrayList<>();
 
@@ -31,8 +31,6 @@ public class Task6_4 {
         int n = entryN;
         int m = entryM;
         int k = entryK;
-        String chartName = "n=" + n + " m=" + m + " k=" + k +"; ";
-        listOfNames.add(chartName);
 
         ArrayList<String> trash = new ArrayList<>();
         ArrayList<ArrayList<String>> arrTrashes = new ArrayList<>();
@@ -64,6 +62,9 @@ public class Task6_4 {
             }
             arrProb[experiment] = (float) numberOfValidSituations / numberOfSituations;
         }
+        double sum = 0;
+        for (double prob : arrProb) sum += prob;
+        listOfNames.add("n=" + n + " m=" + m + " k=" + k + "  средн.вер.=" + sum / arrProb.length +"; ");
         listOfArrays.add(arrProb);
     }
 

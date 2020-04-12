@@ -1,5 +1,7 @@
 import org.jfree.ui.RefineryUtilities;
 
+import java.util.ArrayList;
+
 public class Task2_10 {
 /**
  * Известно, что все номера автомашины четырёхзначные, начиная с 0001, не повторяющиеся и равновозможные.
@@ -10,12 +12,9 @@ public class Task2_10 {
  * г) содержит две пары одинаковых цифр
  * д) состоит из одинаковых цифр
  * */
-    private static int size = 10;
-    private static double[] arrayA = new double[size];
-    private static double[] arrayB = new double[size];
-    private static double[] arrayC = new double[size];
-    private static double[] arrayD = new double[size];
-    private static double[] arrayE = new double[size];
+    private static int numberOfSituations = 10000;
+    private static ArrayList<double[]> listOfArrays = new ArrayList<>();
+    private static ArrayList<String> listOfNames = new ArrayList<>();
 
 
     private static int getRandomIntegerBetweenRange(int min, int max){
@@ -39,29 +38,24 @@ public class Task2_10 {
         double[] probability = new double[numberOfExperiments];
         double sum = 0.0;
 
-        System.out.println("________________________2.10__________________________");
-
         //пункт a)
-        System.out.println("A)");
+        System.out.println("A) ");
         for (int experiment = 0; experiment < numberOfExperiments; experiment++) {
             amountOfValidNumbers = 0;
-            numbers = createArrayOfNumbers(size);
-            for (int i = 0; i < size; i++) {
-                for (int j = 0; j < 4; j++) {
-                    System.out.print(numbers[i][j]);
-                }
-                System.out.print(" ");
+            numbers = createArrayOfNumbers(numberOfSituations);
+            for (int i = 0; i < numberOfSituations; i++) {
                 if (    numbers[i][0] != numbers[i][1] && numbers[i][0] != numbers[i][2] && numbers[i][0] != numbers[i][3] &&
                         numbers[i][1] != numbers[i][2] &&
                         numbers[i][2] != numbers[i][3]) amountOfValidNumbers++;
             }
-            probability[experiment] = (double) amountOfValidNumbers / size;
+            probability[experiment] = (double) amountOfValidNumbers / numberOfSituations;
 
-            System.out.println("       probability = " + (double) amountOfValidNumbers/size);
+            System.out.println("       probability = " + (double) amountOfValidNumbers/ numberOfSituations);
         }
         System.out.println();
-        arrayA = probability.clone();
+        listOfArrays.add(probability.clone());
         for (double prob : probability) sum += prob;
+        listOfNames.add("а) не содержит одинаковых цифр     средн. вер. = " + sum / numberOfExperiments);
         System.out.println("Average probability of all different digits in number = " + sum / numberOfExperiments);
         System.out.println();
 
@@ -70,12 +64,8 @@ public class Task2_10 {
         sum = 0;
         for (int experiment = 0; experiment < numberOfExperiments; experiment++) {
             amountOfValidNumbers = 0;
-            numbers = createArrayOfNumbers(size);
-            for (int i = 0; i < size; i++) {
-                for (int j = 0; j < 4; j++) {
-                    System.out.print(numbers[i][j]);
-                }
-                System.out.print(" ");
+            numbers = createArrayOfNumbers(numberOfSituations);
+            for (int i = 0; i < numberOfSituations; i++) {
                 if (    (numbers[i][0] == numbers[i][1] && numbers[i][0] != numbers[i][2] && numbers[i][0] != numbers[i][3]) ||
                         (numbers[i][0] == numbers[i][2] && numbers[i][0] != numbers[i][1] && numbers[i][0] != numbers[i][3]) ||
                         (numbers[i][0] == numbers[i][3] && numbers[i][0] != numbers[i][1] && numbers[i][0] != numbers[i][2]) ||
@@ -84,13 +74,14 @@ public class Task2_10 {
                         (numbers[i][2] == numbers[i][3] && numbers[i][2] != numbers[i][0] && numbers[i][2] != numbers[i][1])    )
                     amountOfValidNumbers++;
             }
-            probability[experiment] = (double) amountOfValidNumbers / size;
+            probability[experiment] = (double) amountOfValidNumbers / numberOfSituations;
 
-            System.out.println("       probability = " + (double) amountOfValidNumbers/size);
+            System.out.println("       probability = " + (double) amountOfValidNumbers/ numberOfSituations);
         }
         System.out.println();
-        arrayB = probability.clone();
+        listOfArrays.add(probability.clone());
         for (double prob : probability) sum += prob;
+        listOfNames.add("б) имеет две одинаковые цифры     средн.вер. = " + sum / numberOfExperiments);
         System.out.println("Average probability of 2 same digits in number = " + sum / numberOfExperiments);
         System.out.println();
 
@@ -99,25 +90,22 @@ public class Task2_10 {
         sum = 0;
         for (int experiment = 0; experiment < numberOfExperiments; experiment++) {
             amountOfValidNumbers = 0;
-            numbers = createArrayOfNumbers(size);
-            for (int i = 0; i < size; i++) {
-                for (int j = 0; j < 4; j++) {
-                    System.out.print(numbers[i][j]);
-                }
-                System.out.print(" ");
+            numbers = createArrayOfNumbers(numberOfSituations);
+            for (int i = 0; i < numberOfSituations; i++) {
                 if (    (numbers[i][0] == numbers[i][1] && numbers[i][0] == numbers[i][2] && numbers[i][0] != numbers[i][3]) ||
                         (numbers[i][0] == numbers[i][1] && numbers[i][0] == numbers[i][3] && numbers[i][0] != numbers[i][2]) ||
                         (numbers[i][0] == numbers[i][2] && numbers[i][0] == numbers[i][3] && numbers[i][0] != numbers[i][1]) ||
                         (numbers[i][1] == numbers[i][2] && numbers[i][1] == numbers[i][3] && numbers[i][1] != numbers[i][0])    )
                     amountOfValidNumbers++;
             }
-            probability[experiment] = (double) amountOfValidNumbers / size;
+            probability[experiment] = (double) amountOfValidNumbers / numberOfSituations;
 
-            System.out.println("       probability = " + (double) amountOfValidNumbers/size);
+            System.out.println("       probability = " + (double) amountOfValidNumbers/ numberOfSituations);
         }
         System.out.println();
-        arrayC = probability.clone();
+        listOfArrays.add(probability.clone());
         for (double prob : probability) sum += prob;
+        listOfNames.add("в) имеет три одинаковые цифры     средн.вер. = " + sum / numberOfExperiments);
         System.out.println("Average probability of all different digits in number = " + sum / numberOfExperiments);
         System.out.println();
 
@@ -126,24 +114,21 @@ public class Task2_10 {
         sum = 0;
         for (int experiment = 0; experiment < numberOfExperiments; experiment++) {
             amountOfValidNumbers = 0;
-            numbers = createArrayOfNumbers(size);
-            for (int i = 0; i < size; i++) {
-                for (int j = 0; j < 4; j++) {
-                    System.out.print(numbers[i][j]);
-                }
-                System.out.print(" ");
+            numbers = createArrayOfNumbers(numberOfSituations);
+            for (int i = 0; i < numberOfSituations; i++) {
                 if (    numbers[i][0] == numbers[i][1] && numbers[i][2] == numbers[i][3] && numbers[i][0] != numbers[i][2] ||
                         numbers[i][0] == numbers[i][2] && numbers[i][1] == numbers[i][3] && numbers[i][0] != numbers[i][1] ||
                         numbers[i][0] == numbers[i][3] && numbers[i][1] == numbers[i][2] && numbers[i][0] != numbers[i][1]  )
                     amountOfValidNumbers++;
             }
-            probability[experiment] = (double) amountOfValidNumbers / size;
+            probability[experiment] = (double) amountOfValidNumbers / numberOfSituations;
 
-            System.out.println("       probability = " + (double) amountOfValidNumbers/size);
+            System.out.println("       probability = " + (double) amountOfValidNumbers/ numberOfSituations);
         }
         System.out.println();
-        arrayD = probability.clone();
+        listOfArrays.add(probability.clone());
         for (double prob : probability) sum += prob;
+        listOfNames.add("г) содержит две пары одинаковых цифр     средн.вер. = "+ sum / numberOfExperiments);
         System.out.println("Average probability of all different digits in number = " + sum / numberOfExperiments);
         System.out.println();
 
@@ -153,67 +138,32 @@ public class Task2_10 {
         sum = 0;
         for (int experiment = 0; experiment < numberOfExperiments; experiment++) {
             amountOfValidNumbers = 0;
-            numbers = createArrayOfNumbers(size);
-            for (int i = 0; i < size; i++) {
-                for (int j = 0; j < 4; j++) {
-                    System.out.print(numbers[i][j]);
-                }
-                System.out.print(" ");
+            numbers = createArrayOfNumbers(numberOfSituations);
+            for (int i = 0; i < numberOfSituations; i++) {
                 if (    numbers[i][0] == numbers[i][1] && numbers[i][0] == numbers[i][2] && numbers[i][0] == numbers[i][3] &&
                         numbers[i][1] == numbers[i][2] &&
                         numbers[i][2] == numbers[i][3] )
                     amountOfValidNumbers++;
             }
-            probability[experiment] = (double) amountOfValidNumbers / size;
+            probability[experiment] = (double) amountOfValidNumbers / numberOfSituations;
 
-            System.out.println("       probability = " + (double) amountOfValidNumbers/size);
+            System.out.println("       probability = " + (double) amountOfValidNumbers/ numberOfSituations);
         }
         System.out.println();
-        arrayE = probability.clone();
+        listOfArrays.add(probability.clone());
         for (double prob : probability) sum += prob;
+        listOfNames.add("д) состоит из одинаковых цифр     средн.вер. = " + sum / numberOfExperiments);
         System.out.println("Average probability of all different digits in number = " + sum / numberOfExperiments);
-
-        System.out.println("______________________________________________________");
-        System.out.println();
-        System.out.println();
 
         createChart();
     }
 
     private static void createChart() {
-        XYLineChart_AWT chartA = new XYLineChart_AWT("2.10 А",
-                "не содержит одинаковых цифр", arrayA, "А", "Номер эксперимента", "Вероятность");
-        chartA.createDataSet(arrayA, "2.10 A");
+        XYLineChart_AWT chartA = new XYLineChart_AWT("2.10",
+                "", listOfArrays, listOfNames, "Номер эксперимента", "Вероятность");
+        chartA.createAllInOneDataSet(listOfArrays, listOfNames);
         chartA.pack();
-        RefineryUtilities.centerFrameOnScreen( chartA );
+        RefineryUtilities.centerFrameOnScreen(chartA);
         chartA.setVisible(true);
-
-        XYLineChart_AWT chartB = new XYLineChart_AWT("2.10 Б",
-                "имеет две одинаковые цифры", arrayB, "Б", "Номер эксперимента", "Вероятность");
-        chartB.pack();
-        chartB.createDataSet(arrayB, "2.10 Б");
-        RefineryUtilities.centerFrameOnScreen( chartB );
-        chartB.setVisible(true);
-
-        XYLineChart_AWT chartC = new XYLineChart_AWT("2.10 В",
-                "имеет три одинаковые цифры", arrayC, "В", "Номер эксперимента", "Вероятность");
-        chartC.pack();
-        chartC.createDataSet(arrayC, "2.10 В");
-        RefineryUtilities.centerFrameOnScreen( chartC );
-        chartC.setVisible(true);
-
-        XYLineChart_AWT chartD = new XYLineChart_AWT("2.10 Г",
-                "содержит две пары одинаковых цифр", arrayD, "Г", "Номер эксперимента", "Вероятность");
-        chartD.pack();
-        chartD.createDataSet(arrayD, "2.10 Г");
-        RefineryUtilities.centerFrameOnScreen( chartD );
-        chartD.setVisible(true);
-
-        XYLineChart_AWT chartE = new XYLineChart_AWT("2.10 Д",
-                "состоит из одинаковых цифр", arrayE, "Д", "Номер эксперимента", "Вероятность");
-        chartE.pack();
-        chartE.createDataSet(arrayE, "2.10 Д");
-        RefineryUtilities.centerFrameOnScreen( chartE );
-        chartE.setVisible(true);
     }
 }

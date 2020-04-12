@@ -16,9 +16,6 @@ public class Task3_9 {
     private static ArrayList<String> listOfNames= new ArrayList<>();
 
     public static void solve() {
-        System.out.println("________________________3.9__________________________");
-
-        for (int i = 0; i < arrBetas.length; i++) listOfNames.add("β=" + arrBetas[i]);
 
         calculate(arrBetas[0]);
         calculate(arrBetas[1]);
@@ -26,9 +23,6 @@ public class Task3_9 {
         calculate(arrBetas[3]);
 
         createChart();
-
-        System.out.println("______________________________________________________");
-
     }
 
     private static void calculate(double entryBeta) {
@@ -39,8 +33,6 @@ public class Task3_9 {
         double beta = entryBeta;
         double lengthBetweenPoints;
         double requireLength;
-        double[] array = new double[numberOfExperiments];
-        boolean isValid;
         int numberOfValidSituations = 0;
         double[] arrProbability = new double[numberOfExperiments];
 
@@ -48,7 +40,6 @@ public class Task3_9 {
             System.out.print("  Experiment " + experiment + ": ");
             numberOfValidSituations = 0;
             for (int situation = 0; situation < numberOfSituations; situation++) {
-                isValid = false;
                 l = 10;
                 p1 = getRandomDoubleBetweenRange(0.0, 10.0);
                 p2 = getRandomDoubleBetweenRange(0.0, 10.0);
@@ -56,7 +47,6 @@ public class Task3_9 {
                 requireLength = beta * l;
                 if (lengthBetweenPoints < requireLength) {
                     numberOfValidSituations++;
-                    isValid = true;
                 }
             }
 
@@ -64,7 +54,9 @@ public class Task3_9 {
             System.out.println("Average probability = " + arrProbability[experiment]);
         }
         listOfArrays.add(arrProbability);
-
+        double sum = 0;
+        for (double prob : arrProbability) sum += prob;
+        listOfNames.add("β=" + entryBeta + "     средн.вер. = " + sum / arrProbability.length);
         System.out.println();
     }
 

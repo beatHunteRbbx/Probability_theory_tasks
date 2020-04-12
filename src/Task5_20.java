@@ -10,8 +10,8 @@ public class Task5_20 {
      * Определить вероятность того, что шар с номером 2 будет извлечен при втором извлечении.
      * */
 
-    private static int numberOfExperiments = 20;
-    private static int numberOfSituations = 1000;
+    private static int numberOfExperiments = 10;
+    private static int numberOfSituations = 100000;
     private static ArrayList<String> listOfNames = new ArrayList<>();
     private static ArrayList<double[]> listOfArrays = new ArrayList<>();
 
@@ -27,19 +27,14 @@ public class Task5_20 {
     }
     private static void calculate(int numb) {
         int numberOfValidSituations = 0;
-        String chartName = "";
         double[] arrProb = new double[numberOfExperiments];
         ArrayList<Integer> trash = new ArrayList<>();
 
         double[] array = new double[numberOfExperiments];
         int n = numb;
-        chartName = "n = " + n;
-        listOfNames.add(chartName);
         for (int experiment = 0; experiment < numberOfExperiments; experiment++) {
 
             for (int i = 0; i < n; i++) trash.add(i + 1);
-
-
 
             numberOfValidSituations = 0;
             for (int situation = 0; situation < numberOfSituations; situation++) {
@@ -61,10 +56,12 @@ public class Task5_20 {
                 trash.add(secondBall);
             }
             arrProb[experiment] = (double) numberOfValidSituations / numberOfSituations;
+
             array = arrProb.clone();
-
-
         }
+        double sum = 0;
+        for (double prob : array) sum += prob;
+        listOfNames.add("n=" + n +"   средн.вер.="+ sum / array.length);
         listOfArrays.add(array);
     }
 
