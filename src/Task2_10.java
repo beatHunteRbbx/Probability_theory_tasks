@@ -45,7 +45,7 @@ public class Task2_10 {
             numbers = createArrayOfNumbers(numberOfSituations);
             for (int i = 0; i < numberOfSituations; i++) {
                 if (    numbers[i][0] != numbers[i][1] && numbers[i][0] != numbers[i][2] && numbers[i][0] != numbers[i][3] &&
-                        numbers[i][1] != numbers[i][2] &&
+                        numbers[i][1] != numbers[i][2] && numbers[i][1] != numbers[i][3] &&
                         numbers[i][2] != numbers[i][3]) amountOfValidNumbers++;
             }
             probability[experiment] = (double) amountOfValidNumbers / numberOfSituations;
@@ -70,7 +70,7 @@ public class Task2_10 {
                         (numbers[i][0] == numbers[i][2] && numbers[i][0] != numbers[i][1] && numbers[i][0] != numbers[i][3]) ||
                         (numbers[i][0] == numbers[i][3] && numbers[i][0] != numbers[i][1] && numbers[i][0] != numbers[i][2]) ||
                         (numbers[i][1] == numbers[i][2] && numbers[i][1] != numbers[i][0] && numbers[i][1] != numbers[i][3]) ||
-                        (numbers[i][1] == numbers[i][3] && numbers[i][1] != numbers[i][0] && numbers[i][0] != numbers[i][2]) ||
+                        (numbers[i][1] == numbers[i][3] && numbers[i][1] != numbers[i][0] && numbers[i][1] != numbers[i][2]) ||
                         (numbers[i][2] == numbers[i][3] && numbers[i][2] != numbers[i][0] && numbers[i][2] != numbers[i][1])    )
                     amountOfValidNumbers++;
             }
