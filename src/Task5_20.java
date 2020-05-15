@@ -41,13 +41,13 @@ public class Task5_20 {
                 Collections.shuffle(trash);
 
                 //извлечение 1ого шара
-                int rndNumb1 = getRandomIntegerBetweenRange(0, n - 1);
+                int rndNumb1 = getRandomIntegerBetweenRange(0, trash.size() - 1);
                 int firstBall = trash.get(rndNumb1);
                 trash.remove(rndNumb1);
                 if (firstBall != 1) trash.add(firstBall);
 
                 //извлечение 2ого шара
-                int rndNumb2 = getRandomIntegerBetweenRange(0, n - 1);
+                int rndNumb2 = getRandomIntegerBetweenRange(0, trash.size() - 1);
                 int secondBall = trash.get(rndNumb2);
                 trash.remove(rndNumb2);
                 if (secondBall == 2) numberOfValidSituations++;
@@ -63,6 +63,12 @@ public class Task5_20 {
         for (double prob : array) sum += prob;
         listOfNames.add("n=" + n +"   средн.вер.="+ sum / array.length);
         listOfArrays.add(array);
+
+
+        //формульный ответ (аналитический)
+        double prob = (Math.pow(numb, 2) - numb + 1)/(Math.pow(numb, 2) * (numb - 1));
+        System.out.println("P = " + prob);
+        System.out.println();
     }
 
 
