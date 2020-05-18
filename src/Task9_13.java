@@ -5,23 +5,25 @@ import java.util.ArrayList;
 public class Task9_13 {
 
     private static int numberOfExperiments = 10;
-    private static int numberOfSituations = 100;
+    private static int numberOfSituations = 100000;
 
     private static ArrayList<String> listOfNames = new ArrayList<>();
     private static ArrayList<double[]> listOfArrays = new ArrayList<>();
 
     public static void solve() {
 
-        calculate(8);
+        calculate(5);
+        calculate(10);
+        calculate(13);
         calculate(16);
         calculate(20);
-        calculate(5);
+        calculate(25);
+
 
         createChart();
     }
 
     public static void calculate(int roundCounter) {
-        listOfNames.add("n=" + roundCounter);
         int numberOfValidSituations = 0;
         double[] array = new double[numberOfExperiments];
 
@@ -45,6 +47,11 @@ public class Task9_13 {
             array[experiment] = (double) numberOfValidSituations / numberOfSituations;
         }
         listOfArrays.add(array);
+        double sum = 0.0;
+        for (double prob : array) {
+            sum += prob;
+        }
+        listOfNames.add("n=" + roundCounter + "  средн.вер.=" + sum / (double) array.length);
     }
 
     private static int getRandomIntegerBetweenRange(int min, int max){
