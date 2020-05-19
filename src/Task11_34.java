@@ -3,6 +3,12 @@ import org.jfree.ui.RefineryUtilities;
 import java.util.ArrayList;
 
 public class Task11_34 {
+    /**
+     * Считая число вызовов, поступающих на коммутатор за заданный промежуток времени случайной величиной,
+     * подчиняющейся закону Пуассона с параметром, пропорциональным длине промежутка, определить вероятность того,
+     * что за 30 сек не будет ни одного вызова, если математическое ожидание числа вызовов за час равно 60.
+     * */
+
     private static int numberOfExperiments = 30;
     private static ArrayList<String> listOfNames = new ArrayList<>();
     private static ArrayList<double[]> listOfArrays = new ArrayList<>();
