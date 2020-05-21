@@ -12,5 +12,6 @@ public abstract class Main {
         Task11_34.solve();
         Task12_17.solve();
         Task13_39.solve();
+        Task14_11.solve();
     }
 }
