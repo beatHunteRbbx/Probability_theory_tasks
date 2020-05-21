@@ -12,7 +12,8 @@ public class Task11_34 {
     private static int numberOfExperiments = 30;
     private static ArrayList<String> listOfNames = new ArrayList<>();
     private static ArrayList<double[]> listOfArrays = new ArrayList<>();
-    private static double[] array = new double[numberOfExperiments];
+    private static double[] arrayPoisson = new double[numberOfExperiments];
+    private static double[] arrayCalls = new double[numberOfExperiments];
 
     public static void solve() {
         calculate();
@@ -21,11 +22,17 @@ public class Task11_34 {
 
     private static void calculate() {
         double lambda = 0.5;
+        int counter = 0;
         for (int k = 0; k < numberOfExperiments; k++) {
-            array[k] = (Math.pow(lambda, k) * Math.exp(-lambda))/factorial(k);
+            arrayPoisson[k] = (Math.pow(lambda, k) * Math.exp(-lambda))/factorial(k);
+            arrayCalls[k] = lambda * Math.exp(-lambda*k);
+            if (arrayCalls[k] > arrayPoisson[k]) counter++;
         }
-        listOfArrays.add(array);
-        listOfNames.add("lambda = " + lambda);
+        System.out.println("Количество раз, когда время больше 30 секунд = " + counter);
+        listOfArrays.add(arrayPoisson);
+        listOfNames.add("Вероятность по ф.Пуассона (λ = " + lambda + ")");
+        listOfArrays.add(arrayCalls);
+        listOfNames.add("Распределение вызовов (λ = " + lambda + ")");
     }
 
     private static int factorial(int numb) {
@@ -37,7 +44,7 @@ public class Task11_34 {
     }
 
     private static void createChart() {
-        XYLineChart_AWT chart = new XYLineChart_AWT("9.13",
+        XYLineChart_AWT chart = new XYLineChart_AWT("11.34",
                 "", listOfArrays, listOfNames, "Номер эксперимента", "Вероятность");
         chart.createAllInOneDataSet(listOfArrays, listOfNames);
         chart.pack();
