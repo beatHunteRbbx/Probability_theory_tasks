@@ -25,7 +25,7 @@ public class Task11_34 {
         int counter = 0;
         for (int k = 0; k < numberOfExperiments; k++) {
             arrayPoisson[k] = (Math.pow(lambda, k) * Math.exp(-lambda))/factorial(k);
-            arrayCalls[k] = lambda * Math.exp(-lambda*k);
+            arrayCalls[k] = 1 - Math.exp(-lambda*k);
             if (arrayCalls[k] > arrayPoisson[k]) counter++;
         }
         System.out.println("Количество раз, когда время больше 30 секунд = " + counter);
