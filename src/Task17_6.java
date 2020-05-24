@@ -1,14 +1,11 @@
 public class Task17_6 {
 
-    private static int n = 7;
-    private static double[][] matrix = new double[n][n*2];
-
     public static void solve() {
-        calculate();
+        calculate(7);
     }
 
-    public static void calculate() {
-
+    public static void calculate(int n) {
+        double[][] matrix = new double[n][n*2];
         for (int i = 0; i < n; i++) {
             for (int j = i; j < n; j++) {
                 matrix[i][j] = i + 1;
@@ -17,7 +14,7 @@ public class Task17_6 {
             matrix[i][i+n] = 1;
         }
 
-        System.out.println("Дана матрица:");
+        System.out.println("Дана матрица: n=" + n);
         for (int i = 0; i < n; i++) {
             System.out.print("(\t");
             for (int j = 0; j < n; j++) {
