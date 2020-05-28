@@ -57,7 +57,7 @@ public class Task12_17 {
 
     private static void createChart() {
         XYLineChart_AWT chart = new XYLineChart_AWT("12.17",
-                "", listOfArraysX, listOfArraysY, listOfNames, "", "y");
+                "", listOfArraysX, listOfArraysY, listOfNames, "x", "y");
         chart.createXYDataSet(listOfArraysX, listOfArraysY, listOfNames);
         chart.pack();
         RefineryUtilities.centerFrameOnScreen(chart);
