@@ -69,6 +69,34 @@ public class XYLineChart_AWT extends ApplicationFrame {
         setContentPane(chartPanel);
     }
 
+    //конструктор, если нужно создать один единый график с множеством линий
+    public XYLineChart_AWT(String applicationTitle, String chartTitle,
+                           ArrayList<double[]> listOfArraysX,
+                           ArrayList<double[]> listOfArraysY,
+                           ArrayList<String> listOfNames,
+                           String OXName,
+                           String OYName) {
+        super(applicationTitle);
+        JFreeChart XYLineChart = ChartFactory.createXYLineChart(
+                chartTitle,
+                OXName,
+                OYName,
+                createXYDataSet(listOfArraysX, listOfArraysY, listOfNames),
+                PlotOrientation.VERTICAL,
+                true, true, false);
+
+        ChartPanel chartPanel = new ChartPanel(XYLineChart);
+        chartPanel.setPreferredSize(new java.awt.Dimension(560 , 367));
+        final XYPlot plot = XYLineChart.getXYPlot();
+        XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer( );
+        for (int i = 0; i < listOfArraysX.size(); i++) {
+            renderer.setSeriesPaint(3, new Color((int)(Math.random() * 0x1000000)));
+            renderer.setSeriesStroke(i, new BasicStroke(2.0f));
+        }
+        plot.setRenderer(renderer);
+        setContentPane(chartPanel);
+    }
+
     public XYDataset createAllInOneDataSet(ArrayList<double[]> listOfArrays, ArrayList<String> listOfNames) {
         final XYSeriesCollection dataSet = new XYSeriesCollection();
         for (int i = 0; i < listOfArrays.size(); i++) {
@@ -89,6 +117,22 @@ public class XYLineChart_AWT extends ApplicationFrame {
         }
         final XYSeriesCollection dataSet = new XYSeriesCollection( );
         dataSet.addSeries(data);
+        return dataSet;
+    }
+
+    public XYDataset createXYDataSet(   ArrayList<double[]> listOfArraysX,
+                                        ArrayList<double[]> listOfArraysY,
+                                        ArrayList<String> listOfNames) {
+        final XYSeriesCollection dataSet = new XYSeriesCollection();
+        for (int i = 0; i < listOfArraysX.size(); i++) {
+            double[] arrayX = listOfArraysX.get(i);
+            double[] arrayY = listOfArraysY.get(i);
+            final XYSeries data = new XYSeries(listOfNames.get(i));
+            for (int j = 0; j < arrayX.length; j++) {
+                data.add(arrayX[j], arrayY[j]);
+            }
+            dataSet.addSeries(data);
+        }
         return dataSet;
     }
 }
