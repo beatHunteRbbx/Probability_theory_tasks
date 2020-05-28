@@ -8,29 +8,42 @@ public class Task12_17 {
      * в интервале [0;π/2], а ускорение свободного падения постоянно по величине и направлению.
      * */
 
-    private static int limit = 20;
-    private static double[] points = new double[30];
+    private static ArrayList<Double> arrX = new ArrayList<>();
+    private static ArrayList<Double> arrY = new ArrayList<>();
     private static ArrayList<String> listOfNames = new ArrayList<>();
-    private static ArrayList<double[]> listOfArrays = new ArrayList<>();
+    private static ArrayList<double[]> listOfArraysX = new ArrayList<>();
+    private static ArrayList<double[]> listOfArraysY = new ArrayList<>();
 
     public static void solve() {
-        calculate(getRandomIntegerBetweenRange(1, 5));
-        calculate(getRandomIntegerBetweenRange(7, 13));
-        calculate(getRandomIntegerBetweenRange(15, 20));
+        for (int i = 0 ; i < 5; i++) {
+            calculate(getRandomDoubleBetweenRange(1.0, 10.0));
+        }
+
         createChart();
     }
 
-    public static void calculate(int v) {
+    public static void calculate(double v) {
+        arrX.clear();
+        arrY.clear();
         double g = 9.81;
-        int i = 0;
-        for (double x = 0.0; x < limit; x+=0.1) {
-            if (x >= 0 && x <= Math.PI/2) {
-                points[i] = (2/Math.PI)*Math.asin((g*x)/Math.pow(v,2));
-            }
-            i += 1;
-            if (i == points.length) break;
+
+        double x = 0.0;
+        double y = 0.0;
+        do {
+            double angle = (g * x) / Math.pow(v, 2);
+            y = (2 / Math.PI) * Math.asin(angle);
+            arrX.add(x);
+            arrY.add(y);
+            x += 0.01;
+        } while (y <= 1);
+        double[] arrayX = new double[arrX.size()];
+        double[] arrayY = new double[arrX.size()];
+        for (int i = 0; i < arrX.size(); i++) {
+            arrayX[i] = arrX.get(i);
+            arrayY[i] = arrY.get(i);
         }
-        listOfArrays.add(points.clone());
+        listOfArraysX.add(arrayX.clone());
+        listOfArraysY.add(arrayY.clone());
         listOfNames.add("v = " + v);
     }
 
@@ -38,10 +51,14 @@ public class Task12_17 {
         return (int) (Math.random()*((max-min)+1))+min;
     }
 
+    private static double getRandomDoubleBetweenRange(double min, double max){
+        return (Math.random()*((max-min)))+min;
+    }
+
     private static void createChart() {
-        XYLineChart_AWT chart = new XYLineChart_AWT("9.13",
-                "", listOfArrays, listOfNames, "", "Вероятность");
-        chart.createAllInOneDataSet(listOfArrays, listOfNames);
+        XYLineChart_AWT chart = new XYLineChart_AWT("12.17",
+                "", listOfArraysX, listOfArraysY, listOfNames, "", "y");
+        chart.createXYDataSet(listOfArraysX, listOfArraysY, listOfNames);
         chart.pack();
         RefineryUtilities.centerFrameOnScreen(chart);
         chart.setVisible(true);
