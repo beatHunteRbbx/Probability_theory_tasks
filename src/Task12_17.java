@@ -15,8 +15,8 @@ public class Task12_17 {
     private static ArrayList<double[]> listOfArraysY = new ArrayList<>();
 
     public static void solve() {
-        for (int i = 0 ; i < 5; i++) {
-            calculate(getRandomDoubleBetweenRange(1.0, 10.0));
+        for (int i = 0 ; i < 3; i++) {
+            calculate(getRandomIntegerBetweenRange(1, 15));
         }
 
         createChart();
@@ -47,8 +47,8 @@ public class Task12_17 {
         listOfNames.add("v = " + v);
     }
 
-    private static double getRandomDoubleBetweenRange(double min, double max){
-        return (Math.random()*((max-min)))+min;
+    private static int getRandomIntegerBetweenRange(int min, int max){
+        return (int) (Math.random()*((max-min)+1))+min;
     }
 
     private static void createChart() {
